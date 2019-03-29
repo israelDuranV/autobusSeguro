@@ -1,14 +1,16 @@
 {
   "entrypoint": "index.html",
-  "shell": "src/my-app.js",
+  "shell": "./src/my-app.js",
   "sources": [
     "images/**/*"
   ],
   "extraDependencies": [
-    "manifest.json",
-    "node_modules/@webcomponents/webcomponentsjs/*.js",
+    "./manifest.json",
+    "./node_modules/@polymer/polymer/polymer-element.js",
+    "./node_modules/@webcomponents/webcomponentsjs/*.js",
     "!node_modules/@webcomponents/webcomponentsjs/gulpfile.js",
-    "node_modules/@webcomponents/webcomponentsjs/bundles/*.js"
+    "./node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js",
+    "./node_modules/@webcomponents/webcomponentsjs/bundles/*.js"
   ],
   "builds": [
     {
@@ -50,7 +52,7 @@
     {
       "name": "es5-bundled",
       "js": {
-        "minify": true,
+        "minify": false,
         "compile": true,
         "transformModulesToAmd": true
       },

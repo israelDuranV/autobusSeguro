@@ -1,22 +1,22 @@
-import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
-import { setPassiveTouchGestures, setRootPath } from '@polymer/polymer/lib/utils/settings.js';
-import '@polymer/app-layout/app-drawer/app-drawer.js';
-import '@polymer/app-layout/app-drawer-layout/app-drawer-layout.js';
-import '@polymer/app-layout/app-header/app-header.js';
-import '@polymer/app-layout/app-header-layout/app-header-layout.js';
-import '@polymer/app-layout/app-scroll-effects/app-scroll-effects.js';
-import '@polymer/app-layout/app-toolbar/app-toolbar.js';
-import '@polymer/app-route/app-location.js';
-import '@polymer/app-route/app-route.js';
-import '@polymer/iron-pages/iron-pages.js';
-import '@polymer/iron-selector/iron-selector.js';
-import '@polymer/paper-icon-button/paper-icon-button.js';
+import { PolymerElement, html } from '/node_modules/@polymer/polymer/polymer-element.js';
+import { setPassiveTouchGestures, setRootPath } from '/node_modules/@polymer/polymer/lib/utils/settings.js';
+import '/node_modules/@polymer/app-layout/app-drawer/app-drawer.js';
+import '/node_modules/@polymer/app-layout/app-drawer-layout/app-drawer-layout.js';
+import '/node_modules/@polymer/app-layout/app-header/app-header.js';
+import '/node_modules/@polymer/app-layout/app-header-layout/app-header-layout.js';
+import '/node_modules/@polymer/app-layout/app-scroll-effects/app-scroll-effects.js';
+import '/node_modules/@polymer/app-layout/app-toolbar/app-toolbar.js';
+import '/node_modules/@polymer/app-route/app-location.js';
+import '/node_modules/@polymer/app-route/app-route.js';
+import '/node_modules/@polymer/iron-pages/iron-pages.js';
+import '/node_modules/@polymer/iron-selector/iron-selector.js';
+import '/node_modules/@polymer/paper-icon-button/paper-icon-button.js';
 
-import './my-icons.js';
-import '@polymer/iron-icon/iron-icon.js';
-import '@polymer/iron-icons/iron-icons.js';
-import '@polymer/polymer/lib/elements/dom-if.js'
-import { setTouchAction } from '@polymer/polymer/lib/utils/gestures';
+import '/src/my-icons.js';
+import '/node_modules/@polymer/iron-icon/iron-icon.js';
+import '/node_modules/@polymer/iron-icons/iron-icons.js';
+import '/node_modules/@polymer/polymer/lib/elements/dom-if.js';
+import { setTouchAction } from '/node_modules/@polymer/polymer/lib/utils/gestures.js';
 // Gesture events like tap and track generated from touch will not be
 // preventable, allowing for better scrolling performance.
 setPassiveTouchGestures(true);
@@ -25,13 +25,14 @@ setPassiveTouchGestures(true);
 // in `index.html`.
 setRootPath(MyAppGlobals.rootPath);
 
-class MySecurebus extends PolymerElement {
+class MySecurebus extends PolymerElement{
   static get template(){
       return html`
       <style>
         :host {
           --app-primary-color: #4285f4;
           --app-secondary-color: black;
+          --app-header-color:  red;
 
           display: block;
         }
@@ -42,13 +43,23 @@ class MySecurebus extends PolymerElement {
 
         app-header {
           color: #fff;
-          background-color: var(--app-primary-color);
+          background-color: var(--app-header-color);
         }
 
         app-header paper-icon-button {
           --paper-icon-button-ink-color: white;
         }
-
+        iron-pages{
+          background-image: url("/images/img/background-principal-app.jpg");
+          padding: 0px;
+          width:100%;
+          height:100%;
+          position: absolute;
+          display: flex;
+          justify-content: center;
+          background-size: 100% 100%;
+          background-attachment: fixed;
+        }
         .drawer-list {
           margin: 0 20px;
         }
@@ -75,19 +86,19 @@ class MySecurebus extends PolymerElement {
           position: relative;
           float: rigth;
         }
-      </style> 
+      </style>
 
       <app-location route="{{route}}" url-space-regex="^[[rootPath]]">
       </app-location>
 
       <app-route route="{{route}}" pattern="[[rootPath]]:page" data="{{routeData}}" tail="{{subroute}}">
       </app-route>
-      <app-drawer-layout fullbleed="" narrow="{{narrow}}"> 
+      <app-drawer-layout fullbleed="" narrow="{{narrow}}">
         <!-- Drawer content -->
-        <app-drawer id="drawer" slot="drawer" swipe-open="[[narrow]]"> 
+        <app-drawer id="drawer" slot="drawer" swipe-open="[[narrow]]">
         <app-toolbar><img src="../images/manifest/icon-96x96.png" class="icon-menu" width="80px"/></app-toolbar>
           <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-            <a name="emergencia" href="[[rootPath]]emergencia"><paper-icon-button icon="add-box"></paper-icon-button> Emergencia</a>
+            <a name="emergencia" href="[[rootPath]]emergencia"><paper-icon-button icon="add-box"></paper-icon-button>Emergencia</a>
             <a name="list-ascenso-y-descenso" href="[[rootPath]]list-ascenso-y-descenso"><paper-icon-button icon="thumbs-up-down"></paper-icon-button> Ascenso y descenso</a>
             <a name="mapa-viajes-tutor" href="[[rootPath]]mapa-viajes-tutor"><paper-icon-button icon="explore"></paper-icon-button> Mapa de viaje (t)</a>
             <a name="mapa-viajes-chofer" href="[[rootPath]]mapa-viajes-chofer"><paper-icon-button icon="explore"></paper-icon-button> Mapa de viaje (c)</a>
@@ -107,9 +118,9 @@ class MySecurebus extends PolymerElement {
             <a href=""><paper-icon-button icon="icons:mail"></paper-icon-button></a>
             <a href=""><paper-icon-button icon="power-settings-new" on-click="logout"></paper-icon-button></a>
             <div main-title="Autobús Seguro"></div>
-            <img class="icono" src="../images/img/logotipo.png" width="70px"> 
-            
-            </app-toolbar> 
+            <img class="icono" src="../images/img/logotipo.png" width="70px">
+
+            </app-toolbar>
           </app-header>
 
           <iron-pages selected="[[page]]" attr-for-selected="name" role="main">
@@ -170,7 +181,7 @@ class MySecurebus extends PolymerElement {
     } else {
       this.page = 'view404';
     }
-   
+
     // Close a non-persistent drawer when the page & route are changed.
     if (!this.$.drawer.persistent) {
       this.$.drawer.close();
