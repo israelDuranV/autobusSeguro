@@ -64,15 +64,15 @@ class MyUsuarios extends PolymerElement {
           <template is="dom-if" if="[[added]]">
           <div class="card">
               <div class="circle"></div>Nuevo Usuario
-              <paper-input type="text" label="Nombre" id="addNombre" value="{{addNombre}}"></paper-input>
-              <paper-input type="text" label="Email" id="addEmail" value="{{addEmail}}"></paper-input>
-              <paper-input type="text" label="Rol" id="addRol" value="{{addRol}}"></paper-input>
+              <paper-input type="text" label="Nombre" id="addNombre" value="{{addNombre}}" required></paper-input>
+              <paper-input type="text" label="Email" id="addEmail" value="{{addEmail}}" required></paper-input>
+              <paper-input type="text" label="Rol" id="addRol" value="{{addRol}}" required></paper-input>
               <paper-button toggles raised class="green" on-click="agregarUser">Aceptar</paper-button>   
           </div>
           </template>
       <dom-repeat items="{{userper}}">
         <template>
-          <my-useredite-card mykey="{{item.key}}" myname="{{item.nombre}}" myemail="{{item.rol}}" myrol="{{item.rol}}"></my-useredite-card>
+          <my-useredite-card mykey="{{item.key}}" myname="{{item.nombre}}" myemail="{{item.email}}" myrol="{{item.rol}}"></my-useredite-card>
         </template>
       </dom-repeat>
     `;
@@ -116,11 +116,9 @@ class MyUsuarios extends PolymerElement {
   }
   agregarUser(event){
       event.preventDefault();
-      console.log("hola mundo");
       const addEmail  = this.addEmail;
       const addNombre = this.addNombre;
       const addRol    = this.addRol;
-      console.log(addEmail+addNombre+addRol);
 
     firebase.database().ref('Users/').push({
       email   : addEmail,

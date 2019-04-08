@@ -132,7 +132,6 @@ class MySecurebus extends PolymerElement{
         <app-header-layout has-scrolling-region="">
           <app-header slot="header" condenses="" reveals="" effects="waterfall">
             <app-toolbar>
-
             <a href=""><paper-icon-button icon="my-icons:menu" drawer-toggle=""></paper-icon-button></a>
             <a href="[[rootPath]]perfil"><paper-icon-button icon="account-box"></paper-icon-button></a>
             <a href=""><paper-icon-button icon="icons:translate"></paper-icon-button></a>
@@ -146,9 +145,9 @@ class MySecurebus extends PolymerElement{
           <h5>hola {{user}}</h5>
           <iron-pages selected="[[page]]" attr-for-selected="name" role="main">
             <my-perfil name="perfil"></my-perfil>
-            <my-registro-alumnos name="registro-alumnos"></my-registro-alumnos>
+            <my-registro-alumnos name="registro-alumnos" alumnosper="{{alumnosper}}"></my-registro-alumnos>
             <my-viajes name="viajes"></my-viajes>
-            <my-registro-destino name="registro-destino"></my-registro-destino>
+            <my-registro-destino name="registro-destino" destinosper="{{destinosper}}"></my-registro-destino>
             <my-list-ascenso-y-descenso name="list-ascenso-y-descenso"></my-list-ascenso-y-descenso>
             <my-mapa-viajes-tutor name="mapa-viajes-tutor"></my-mapa-viajes-tutor>
             <my-mapa-viajes-chofer name="mapa-viajes-chofer"></my-mapa-viajes-chofer>

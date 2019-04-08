@@ -10,12 +10,12 @@ class MyEmergencia extends PolymerElement {
 
           padding: 10px;
         }
+        
       </style>
 
       <div class="card">
         <div class="circle">1</div>
         <h1>Números de Emergencia</h1>
-        <p>
         <ul>
           <li>Emergencias: 911</li>
           <li>Policía del DF: 066</li>
